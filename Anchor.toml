@@ -1,0 +1,28 @@
+[toolchain]
+anchor_version = "0.32.1"
+solana_version = "2.3.13"
+package_manager = "yarn"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+arcter_access = "AjD7rqA8Ep3E7VDeCBjnqCdTkDPDgAdNUCjETMKjGxUB"
+arcter_config = "2N5AqtBmZyUYbNufeMPcSuKWFYBxRzwuQ1HFPxCj7ajk"
+arcter_oracle = "FDHgEUKWuHe9FeBvcGa8dCa9KcMNpuijEFdbdjsTyGcJ"
+arcter_rfq = "BKBsrCf2vdcfn9CzkEhfFcmAXqjPUszg7kCpx4fXBgjs"
+arcter_router = "4k5xDqZX8ry422znZoafGrA5WQVW5R9pJ4hYooU1ESXH"
+arcter_vault = "Gkz6QizHjtNvMVmaTSuTnEfjrM4W83mF15PVq5j1CoY5"
+
+[programs.devnet]
+arcter_access = "AjD7rqA8Ep3E7VDeCBjnqCdTkDPDgAdNUCjETMKjGxUB"
+arcter_config = "2N5AqtBmZyUYbNufeMPcSuKWFYBxRzwuQ1HFPxCj7ajk"
+arcter_oracle = "FDHgEUKWuHe9FeBvcGa8dCa9KcMNpuijEFdbdjsTyGcJ"
+arcter_rfq = "BKBsrCf2vdcfn9CzkEhfFcmAXqjPUszg7kCpx4fXBgjs"
+arcter_router = "4k5xDqZX8ry422znZoafGrA5WQVW5R9pJ4hYooU1ESXH"
+arcter_vault = "Gkz6QizHjtNvMVmaTSuTnEfjrM4W83mF15PVq5j1CoY5"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/arcter-devnet.json"
