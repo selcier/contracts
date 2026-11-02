@@ -1,0 +1,26 @@
+[package]
+name = "arcter-vault"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "arcter_vault"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+custom-heap = []
+custom-panic = []
+anchor-debug = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build", "arcter-config/idl-build", "arcter-access/idl-build", "arcter-oracle/idl-build"]
+
+[dependencies]
+anchor-lang = { workspace = true }
+anchor-spl = { workspace = true }
+arcter-config = { path = "../arcter-config", features = ["cpi"] }
+arcter-access = { path = "../arcter-access", features = ["cpi"] }
+arcter-oracle = { path = "../arcter-oracle", features = ["cpi"] }
