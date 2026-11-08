@@ -90,7 +90,13 @@ contract ValuationOracle is IValuationOracle, AccessControl, Initializable {
         return _rounds.length;
     }
 
-    // Read functions required by AggregatorV3Interface
+    /// @notice Returns true when the latest valuation is older than `maxAge` seconds.
+    function isStale(uint256 maxAge) external view returns (bool) {
+        if (_rounds.length == 0) return true;
+        return block.timestamp - _rounds[_rounds.length - 1].asOf > maxAge;
+    }
+
+        // Read functions required by AggregatorV3Interface
 
     function decimals() external pure returns (uint8) {
         return 8;
