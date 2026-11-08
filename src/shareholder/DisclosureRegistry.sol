@@ -17,6 +17,7 @@ contract DisclosureRegistry is AccessControl, Initializable {
     bytes32 public constant COMPANY_UPDATE = "COMPANY_UPDATE";
     bytes32 public constant BOARD_RESOLUTION = "BOARD_RESOLUTION";
     bytes32 public constant VALUATION_REPORT = "VALUATION_REPORT";
+    bytes32 public constant LEGAL_OPINION = "LEGAL_OPINION";
 
     struct Document {
         bytes32 kind;
@@ -82,6 +83,6 @@ contract DisclosureRegistry is AccessControl, Initializable {
 
     function isKnownKind(bytes32 kind) public pure returns (bool) {
         return kind == SHARE_CLASS_TERMS || kind == OFFERING_DOCUMENT || kind == FINANCIAL_STATEMENT
-            || kind == COMPANY_UPDATE || kind == BOARD_RESOLUTION || kind == VALUATION_REPORT;
+            || kind == COMPANY_UPDATE || kind == BOARD_RESOLUTION || kind == VALUATION_REPORT || kind == LEGAL_OPINION;
     }
 }
