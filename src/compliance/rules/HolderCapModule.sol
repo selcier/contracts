@@ -28,6 +28,11 @@ contract HolderCapModule is IdentityBalanceModule {
         return holderCount < maxHolders ? ReasonCodes.OK : ReasonCodes.HOLDER_CAP_REACHED;
     }
 
+    /// @notice How many new holders the class can still accept before the cap blocks incoming transfers.
+    function remainingCapacity() external view returns (uint32) {
+        return holderCount >= maxHolders ? 0 : maxHolders - holderCount;
+    }
+
     function _onIdentityFunded(address) internal override {
         ++holderCount;
     }
