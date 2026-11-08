@@ -52,6 +52,17 @@ contract PoolGate is AccessControl, Initializable {
         emit PoolRemoved(pool);
     }
 
+    function registerPools(address[] calldata pools) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        for (uint256 i; i < pools.length; ++i) {
+            address pool = pools[i];
+            if (isPool[pool]) revert PoolAlreadyRegistered();
+            if (token.ruleEngine().hasModule("ROFR")) revert ROFRIncompatible();
+            if (!token.isAgent(pool)) revert NotVenue();
+            isPool[pool] = true;
+            emit PoolRegistered(pool);
+        }
+    }
+
     /// @notice Gives the rules' verdict on `pool` sending `amount` shares to `recipient`, or NOT_ELIGIBLE for an
     ///         unregistered pool.
     function checkSwap(address pool, address recipient, uint256 amount) public view returns (bytes32) {
