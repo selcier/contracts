@@ -10,6 +10,7 @@ import {ReasonCodes} from "../../shared/ReasonCodes.sol";
 ///      `abi.encode(uint16 maxBps, bool applyToMints, address[] exemptIdentities)`. Clearing `applyToMints` restricts
 ///      the limit to transfers, and the registrar can then import a cap table in whatever order suits it.
 contract MaxOwnershipModule is IdentityBalanceModule {
+    event CeilingUpdated(uint16 maxBps, bool applyToMints, uint256 exemptCount);
     uint256 public constant MAX_EXEMPT = 32;
 
     uint16 public maxBps;
@@ -50,5 +51,6 @@ contract MaxOwnershipModule is IdentityBalanceModule {
             isExempt[exempt[i]] = true;
             _exempt.push(exempt[i]);
         }
+        emit CeilingUpdated(bps, mints, exempt.length);
     }
 }
