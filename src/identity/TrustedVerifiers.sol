@@ -20,6 +20,7 @@ contract TrustedVerifiers is ITrustedVerifiers, AccessControl, Initializable {
 
     mapping(address => mapping(bytes32 => bool)) private _trusted;
     mapping(address => bytes32[]) private _topics;
+    uint256 private _verifierCount;
 
     constructor() {
         _disableInitializers();
@@ -52,6 +53,10 @@ contract TrustedVerifiers is ITrustedVerifiers, AccessControl, Initializable {
         return _topics[verifier];
     }
 
+    function verifierCount() external view returns (uint256) {
+        return _verifierCount;
+    }
+
     function _add(address verifier, bytes32[] calldata topics) private {
         if (verifier == address(0)) revert InvalidVerifier();
         if (topics.length > MAX_TOPICS) revert TooManyTopics();
@@ -61,6 +66,7 @@ contract TrustedVerifiers is ITrustedVerifiers, AccessControl, Initializable {
                 _topics[verifier].push(topics[i]);
             }
         }
+        _verifierCount++;
         emit VerifierAdded(verifier, topics);
     }
 
@@ -69,6 +75,7 @@ contract TrustedVerifiers is ITrustedVerifiers, AccessControl, Initializable {
         for (uint256 i; i < list.length; ++i) {
             _trusted[verifier][list[i]] = false;
         }
+        if (list.length > 0) _verifierCount--;
         delete _topics[verifier];
     }
 }
