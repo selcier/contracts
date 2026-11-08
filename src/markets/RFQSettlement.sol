@@ -73,6 +73,7 @@ contract RFQSettlement is AccessControl, Initializable, ReentrancyGuard, EIP712 
     mapping(bytes32 => uint256) public filled;
     mapping(address => mapping(uint256 => bool)) public cancelled;
     mapping(address => uint256) public minNonce;
+    mapping(bytes32 => mapping(address => uint256)) public takerFilled;
 
     constructor() EIP712("Selcier", "1") {
         _disableInitializers();
@@ -143,6 +144,7 @@ contract RFQSettlement is AccessControl, Initializable, ReentrancyGuard, EIP712 
         if (total > q.quantity) revert Overfill();
         if (!SignatureChecker.isValidSignatureNow(q.maker, quoteHash, signature)) revert InvalidSignature();
         filled[quoteHash] = total;
+        takerFilled[quoteHash][msg.sender] += quantity;
 
         (address seller, address buyer) = q.side == MAKER_SELLS ? (q.maker, msg.sender) : (msg.sender, q.maker);
         uint256 buyerGross = Math.mulDiv(quantity, q.price, 1e18, Math.Rounding.Ceil);
