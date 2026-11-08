@@ -15,6 +15,8 @@ library Topics {
     bytes32 internal constant EMPLOYEE_OF = "EMPLOYEE_OF";
     /// @dev The holder cleared screening, with the time encoded as `abi.encode(uint64 lastScreenedAt)`.
     bytes32 internal constant SCREENED = "SCREENED";
+    /// @dev Maximum number of seconds a screening claim stays valid before the holder must re-screen.
+    uint64 internal constant SCREENING_TTL = 365 days;
     /// @dev Marks a contract as an approved venue, a permissioned pool for example. Its claim data holds the token
     ///      this approval covers, packed with `abi.encode(address shareToken)`.
     bytes32 internal constant VENUE = "VENUE";
