@@ -1,0 +1,21 @@
+# Standalone workspace, so the test tooling cannot move the dependency pins
+# that the SBF compiler relies on in the main lockfile.
+[workspace]
+
+[package]
+name = "arcter-tests"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dev-dependencies]
+anchor-lang = "0.32.1"
+anchor-spl = { version = "0.32.1", features = ["token", "token_2022", "token_2022_extensions"] }
+arcter-access = { path = "../programs/arcter-access", features = ["no-entrypoint"] }
+arcter-config = { path = "../programs/arcter-config", features = ["no-entrypoint"] }
+arcter-oracle = { path = "../programs/arcter-oracle", features = ["no-entrypoint"] }
+arcter-rfq = { path = "../programs/arcter-rfq", features = ["no-entrypoint"] }
+arcter-router = { path = "../programs/arcter-router", features = ["no-entrypoint"] }
+arcter-vault = { path = "../programs/arcter-vault", features = ["no-entrypoint"] }
+litesvm = "0.7"
+solana-sdk = "2.3"
