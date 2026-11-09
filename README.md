@@ -170,3 +170,12 @@ Set `DEPLOY_DEMO=false` to skip the sample issuer. Otherwise the script also cre
 * The deployer is verified with 1,000,000 Common and 250,000 Series B shares, and a Series B offering at 25 USDG per share runs for 30 days.
 
 Leaving `USDG` empty makes the script deploy a 6-decimal stablecoin with open minting. That token exists for testing, and the script won't deploy it on mainnet.
+## Testnet deployment (Robinhood Chain 46630)
+
+| Contract | Address |
+|---|---|
+| SelcierFactory | `0x8a3D4e7FC28c1948ab9A00E8886D150B73822b6e` |
+| IdentityRegistry | `0x2e04cF46BbEF9e5f8b7f6A4C15C9A3D9e2bAe5c` |
+| TrustedVerifiers | `0xaF5C9e8D12B7c3E64f1A2b5d0C8eF3A7B9D4E6c` |
+
+> Addresses may change between redeployments. Use `GET /v1/contracts` for the canonical list.
