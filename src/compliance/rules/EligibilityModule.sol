@@ -10,6 +10,7 @@ import {Topics} from "../../shared/Topics.sol";
 /// @dev Encode the configuration as `abi.encode(uint8 minimumTier, bool exemptEmployees)`. Setting `exemptEmployees`
 ///      waives the tier requirement for anyone whose valid EMPLOYEE_OF claim names this company.
 contract EligibilityModule is BaseModule {
+    event EligibilityConfigured(uint8 minimumTier, bool exemptEmployees);
     uint8 public minimumTier;
     bool public exemptEmployees;
 
@@ -30,5 +31,6 @@ contract EligibilityModule is BaseModule {
 
     function _configure(bytes calldata config) internal override {
         (minimumTier, exemptEmployees) = abi.decode(config, (uint8, bool));
+        emit EligibilityConfigured(minimumTier, exemptEmployees);
     }
 }
