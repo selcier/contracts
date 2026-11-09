@@ -26,4 +26,5 @@ library ReasonCodes {
     bytes32 internal constant ROFR_PENDING = "ROFR_PENDING";
     bytes32 internal constant MAX_OWNERSHIP_EXCEEDED = "MAX_OWNERSHIP_EXCEEDED";
     bytes32 internal constant UNVESTED = "UNVESTED";
+    bytes32 internal constant STALE_SCREENING = "STALE_SCREENING";
 }
